@@ -8,7 +8,7 @@ During the compilation process, the Quex compiler generates multiple source file
 
 ### Installation
 
-Go into you `site_scons` directory and checkout the code.  Check [the SCons manpage](http://www.scons.org/doc/HTML/scons-man.html) for detail information about the `site_scons` directory under different platforms.
+Check out the code and put the `quex` directory into your `site_scons/site_tools` directory.
 
 For example:
 
@@ -16,16 +16,16 @@ For example:
 
         $ cd /tmp
         $ git clone https://github.com/liancheng/scons-quex.git
-        $ mkdir ~/.scons/site_scons
-        $ cp -rf /tmp/scons-quex/quex ~/.scons/site_scons/
+        $ mkdir ~/.scons/site_scons/site_tools
+        $ cp -rf /tmp/scons-quex/quex ~/.scons/site_scons/site_tools
 
 *   If you just want to use this tool for a single project, then just put the `quex`, then:
 
         $ cd /tmp
         $ git clone https://github.com/liancheng/scons-quex.git
         $ cd path/to/my-project # the directory where you invoke scons
-        $ mkdir site_scons
-        $ cp -rf /tmp/scons-quex/quex site_scons/
+        $ mkdir site_scons/site_tools
+        $ cp -rf /tmp/scons-quex/quex site_scons/site_tools
 
 ### Invoke
 
@@ -61,58 +61,58 @@ Check the `samples` directory for details.
 
 ## Construction variables references
 
-`QUEXLANG`
+### `QUEXLANG`
 
->   Default value: `C++`
->
->   Equivalent to [the Quex command line option `--language`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--language).
+Default value: `C++`
 
-`QUEXEXT`
+Equivalent to the Quex command line option [`--language`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--language).
 
->   No default value.
->
->   Equivalent to [the Quex command line option `--file-extension-scheme`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--file-extension-scheme).
+### `QUEXEXT`
 
-`QUEXOUTDIR`
+No default value.
 
->   Default value: `'.'` (the current working directory)
->
->   Equivalent to [the Quex command line option `--output-dir`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--output-dir).
+Equivalent to the Quex command line option [`--file-extension-scheme`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--file-extension-scheme).
 
-`QUEXTKNID`
+### `QUEXOUTDIR`
 
->   No default value.
->
->   Equivalent to [the Quex command line option `--foreign-token-id-file`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--foreign-token-id-file).
+Default value: `'.'` (the current working directory)
 
-`QUEXENGINE`
+Equivalent to the Quex command line option [`--output-dir`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--output-dir).
 
->   Default value: `Lexer`
->
->   Used together with `QUEXENGINENS`.  These two construction variables altogether are equivalent to the [Quex command line option `--engine`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption-o).
+### `QUEXTKNID`
 
-`QUEXENGINENS`
+No default value.
 
->   Default value: `''` (empty string)
->
->   Specify the namespace of the generated lexer engine, used together with `QUEXNENGINE`.  For example, in Quex, if you need a lexer whose name is `MyLexer` and whose namespace is `lex`, you can run `quex` with the following command line option::
->
->       $ quex --engine lex::MyLexer
->
->   If you invoke `quex` like this:
->
->       $ quex --engine MyLexer
->
->   the generated lexer will be placed into the default `quex` namespace.
->
->   To get a lexer stay in the global namespace, you need this:
->
->       $ quex --engine ::MyLexer
->
->   And, in the Quex SCons tool, engine name and namespace are specified separately.  If you do not specify `QUEXENGINENS` or set it to an empty string, you end with the default namespace `quex`.  To get rid of any namespace, set it to `::`.
->
->   Note: Quex 0.62.1 and lower versions misbehaves when you try to get rid of the namespace.  The bug was fixed in Quex 0.62.4.  See [here](http://sourceforge.net/tracker/?func=detail&aid=3515838&group_id=168259&atid=846112).
+Equivalent to the Quex command line option [`--foreign-token-id-file`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption--foreign-token-id-file).
 
-`QUEXFLAGS`
+### `QUEXENGINE`
 
->   Any Quex command options other than above can be put here.
+Default value: `Lexer`
+
+Used together with `QUEXENGINENS`.  These two construction variables altogether are equivalent to the Quex command line option [`--engine`](http://quex.sourceforge.net/doc/html/invocation/command-line/intro.html#cmdoption-o).
+
+### `QUEXENGINENS`
+
+Default value: `''` (empty string)
+
+Specify the namespace of the generated lexer engine, used together with `QUEXNENGINE`.  For example, in Quex, if you need a lexer whose name is `MyLexer` and whose namespace is `lex`, you can run `quex` with the following command line option::
+
+    $ quex --engine lex::MyLexer
+
+If you invoke `quex` like this:
+
+    $ quex --engine MyLexer
+
+the generated lexer will be placed into the default `quex` namespace.
+
+To get a lexer stay in the global namespace, you need this:
+
+    $ quex --engine ::MyLexer
+
+And, in the Quex SCons tool, engine name and namespace are specified separately.  If you do not specify `QUEXENGINENS` or set it to an empty string, you end with the default namespace `quex`.  To get rid of any namespace, set it to `::`.
+
+Note: Quex 0.62.1 and lower versions misbehaves when you try to get rid of the namespace.  The bug was fixed in Quex 0.62.4.  See [here](http://sourceforge.net/tracker/?func=detail&aid=3515838&group_id=168259&atid=846112).
+
+### `QUEXFLAGS`
+
+Any Quex command options other than above can be put here.
