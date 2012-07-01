@@ -75,11 +75,11 @@ def quex_emitter(source, target, env):
 
     # Auto generated lexer source/header files
     target = [
-        target_prefix +                    source_ext,
+        target_prefix + source_ext,
         target_prefix + '-configuration' + header_ext,
-        target_prefix +                    header_ext,
-        target_prefix + '-token'         + header_ext,
-        target_prefix + '-token_ids'     + header_ext,
+        target_prefix + header_ext,
+        target_prefix + '-token' + header_ext,
+        target_prefix + '-token_ids' + header_ext,
     ]
 
     if 'QUEXTKNID' in env:
@@ -132,4 +132,4 @@ def _detect(env):
 def exists(env):
     return _detect(env)
 
-# vim:ft=python ts=4 sw=4 tw=70 et
+# vim:ft=python ts=4 sw=4 tw=80 et

@@ -1,0 +1,15 @@
+from os import environ
+
+env = Environment(tools=['default', 'quex'],
+                  ENV=environ,
+                  CPPPATH=environ['QUEX_PATH'],
+                  CPPDEFINES=['QUEX_OPTION_ASSERTS_WARNING_MESSAGE_DISABLED'])
+
+lexer_src = env.Quex(source='hello')
+
+program = env.Program(target='test',
+                      source=env.Glob('*.cpp'))
+
+env.Depends(target=program, dependency=lexer_src)
+
+# vim:ft=python

@@ -1,0 +1,11 @@
+token
+{
+    ID;
+}
+
+start = MAIN;
+
+mode MAIN : <skip: [ \t\n]>
+{
+    [a-z]+ => QUEX_TKN_ID (Lexeme);
+}
